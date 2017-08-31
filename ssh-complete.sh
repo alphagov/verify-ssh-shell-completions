@@ -21,6 +21,9 @@ _complete-ssh () {
   elif [ -f $inventory ]; then
     hostnames=$(sed "$SEDPAT" ${inventory} | sort -u | paste -sd "$IFS" -)
 
+  else
+    >&2 echo
+    >&2 echo "Could not find inventory file $inventory. Make sure $IDA_ANSIBLE_DIR/ansible.cfg has an absolute path to its hosts file."
   fi
 
   COMPREPLY=( $( compgen -W  "$hostnames" -- "$cur" ) )
