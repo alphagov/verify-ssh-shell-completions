@@ -8,11 +8,11 @@ SEDPAT="$SEDPAT /^[^\.]*$/d;" # Remove lines not containing a dot (.)
 _complete-ssh() {
   local hostnames inventory
 
-  if [ -z "$IDA_ANSIBLE_DIR" ]
+  if [ -z "$VERIFY_ANSIBLE_DIR" ]
   then
-      >&2 echo 'Error: IDA_ANSIBLE_DIR must be set'
+      >&2 echo 'Error: VERIFY_ANSIBLE_DIR must be set'
   else
-    inventory=$(awk -F= '/inventory/ {gsub(/ /, "", $2); gsub(/~/, "'$HOME'", $2); print $2}' "${IDA_ANSIBLE_DIR}/ansible.cfg")
+    inventory=$(awk -F= '/inventory/ {gsub(/ /, "", $2); gsub(/~/, "'$HOME'", $2); print $2}' "${VERIFY_ANSIBLE_DIR}/ansible.cfg")
 
     if [ -d $inventory ]; then
       hostnames=$(sed "$SEDPAT" "${inventory}"* | sort -u | paste -s -)
