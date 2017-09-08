@@ -10,6 +10,7 @@ SEDPAT="$SEDPAT /^[^\.]*$/d;" # Remove lines not containing a dot (.)
 _complete-ssh () {
   local cur hostnames inventory
   inventory=$(awk -F= '/inventory/ {gsub(/ /, "", $2); gsub(/~/, "'$HOME'", $2); print $2}' "${IDA_ANSIBLE_DIR}/ansible.cfg")
+  [[ -e "$inventory" ]] || inventory="${IDA_ANSIBLE_DIR}/$inventory"
   cur=${COMP_WORDS[COMP_CWORD]}
 
   if [ -d $inventory ]; then

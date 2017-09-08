@@ -13,6 +13,7 @@ _complete-ssh() {
       >&2 echo 'Error: IDA_ANSIBLE_DIR must be set'
   else
     inventory=$(awk -F= '/inventory/ {gsub(/ /, "", $2); gsub(/~/, "'$HOME'", $2); print $2}' "${IDA_ANSIBLE_DIR}/ansible.cfg")
+    [[ -e "$inventory" ]] || inventory="${IDA_ANSIBLE_DIR}/$inventory"
 
     if [ -d $inventory ]; then
       hostnames=$(sed "$SEDPAT" "${inventory}"* | sort -u | paste -s -)
