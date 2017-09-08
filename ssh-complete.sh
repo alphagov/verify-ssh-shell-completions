@@ -9,7 +9,7 @@ SEDPAT="$SEDPAT /^[^\.]*$/d;" # Remove lines not containing a dot (.)
 
 _complete-ssh () {
   local cur hostnames inventory
-  inventory=$(awk -F= '/inventory/ {gsub(/ /, "", $2); gsub(/~/, "'$HOME'", $2); print $2}' "${IDA_ANSIBLE_DIR}/ansible.cfg")
+  inventory=$(awk -F= '/inventory/ {gsub(/ /, "", $2); gsub(/~/, "'$HOME'", $2); print $2}' "${VERIFY_ANSIBLE_DIR}/ansible.cfg")
   cur=${COMP_WORDS[COMP_CWORD]}
 
   if [ -d $inventory ]; then
@@ -23,15 +23,15 @@ _complete-ssh () {
 
   else
     >&2 echo
-    >&2 echo "Could not find inventory file $inventory. Make sure $IDA_ANSIBLE_DIR/ansible.cfg has an absolute path to its hosts file."
+    >&2 echo "Could not find inventory file $inventory. Make sure $VERIFY_ANSIBLE_DIR/ansible.cfg has an absolute path to its hosts file."
   fi
 
   COMPREPLY=( $( compgen -W  "$hostnames" -- "$cur" ) )
 }
 
-if [ -z "$IDA_ANSIBLE_DIR" ]
+if [ -z "$VERIFY_ANSIBLE_DIR" ]
 then
-  >&2 echo 'Error: IDA_ANSIBLE_DIR must be set'
+  >&2 echo 'Error: VERIFY_ANSIBLE_DIR must be set'
 else
   complete -F _complete-ssh ssh
 fi
