@@ -9,8 +9,8 @@ Requirements
 ------------
 
 - jq (`brew install jq`)
-- ida-ansible repository checked out, and you need to have run the `hosts`
-  script in ida-ansible to generate a hosts cache file
+- verify-ansible repository checked out, and you need to have run the `hosts`
+  script in verify-ansible to generate a hosts cache file
 
 SSH Shell Completions
 ---------------------
@@ -25,8 +25,8 @@ follows.
 Add the following to your `~/.bashrc`, adjusting any paths as necessary.
 
 ```
-export IDA_ANSIBLE_DIR="${HOME}/Projects/ida-ansible"
-. ~/Projects/verify-shell-completions/ssh-complete.sh
+export IDA_ANSIBLE_DIR="${HOME}/Projects/verify-ansible"
+. ~/Projects/verify-ssh-shell-completions/ssh-complete.sh
 ```
 
 ### ZSH
@@ -34,8 +34,8 @@ export IDA_ANSIBLE_DIR="${HOME}/Projects/ida-ansible"
 Add the following to your `~/.zshrc`, adjusting paths as necessary.
 
 ```
-export IDA_ANSIBLE_DIR="${HOME}/Projects/ida-ansible"
-source ~/Projects/verify-shell-completions/ssh-complete.zsh
+export IDA_ANSIBLE_DIR="${HOME}/Projects/verify-ansible"
+source ~/Projects/verify-ssh-shell-completions/ssh-complete.zsh
 
 ```
 
@@ -45,5 +45,5 @@ Usage
 Completions should now get the full list of hosts from the ansible inventory.
 
 To find out more about the dynamic inventory and how to refresh it see the
-[ida-ansible/README.md](https://github.digital.cabinet-office.gov.uk/gds/ida-ansible/tree/master#dynamic-inventory)
+[verify-ansible/README.md](https://github.digital.cabinet-office.gov.uk/gds/verify-ansible/tree/master#dynamic-inventory)
 
